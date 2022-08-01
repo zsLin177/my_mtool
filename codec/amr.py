@@ -169,7 +169,7 @@ def amr2graph(id, amr, text, stash, camr = False,
         for label, tgt in r:
             normal = None;
             if label == "mod":
-                normal = "domain";
+                normal = "fdomain";
             elif label.endswith("-of-of") \
                  or label.endswith("-of") \
                    and label not in {"consist-of" "subset-of"} \

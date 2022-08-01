@@ -384,7 +384,7 @@ class Edge(object):
                 and self.lab is not None:
                 label = self.lab;
                 if label == "mod":
-                    self.normal = "domain";
+                    self.normal = "fdomain";
                 elif label.endswith("-of-of") \
                      or label.endswith("-of") \
                      and label not in {"consist-of" "subset-of"} \
