@@ -1,1 +1,1 @@
-./main.py --read camr --write mrp data/sample/camr/new_camr_train.txt data/sample/camr/camr_train_fdomain.mrp
+./main.py --read camr --write mrp data/sample/camr/new_camr_test.txt data/sample/camr/camr_test_fdomain.mrp

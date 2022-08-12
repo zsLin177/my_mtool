@@ -1,7 +1,7 @@
 import sys;
 
 import score.core;
-from smatch.smatch import get_amr_match;
+from smatch.smatch import get_amr_match, print_alignment;
 
 def tuples(graph, prefix, values, faith = True):
   #
@@ -47,7 +47,7 @@ def tuples(graph, prefix, values, faith = True):
                             mapping[edge.src], mapping[edge.tgt]));
   return instances, attributes, relations, n;
 
-def smatch(gold, system, limit = 20, values = {}, trace = 0, faith = True):
+def smatch(gold, system, limit = 20, values = {}, trace = 0, faith = True, print_align=False, return_tup=False):
   gprefix = "g"; sprefix = "s";
   ginstances, gattributes, grelations, gn \
     = tuples(gold, gprefix, values, faith);
@@ -72,6 +72,10 @@ def smatch(gold, system, limit = 20, values = {}, trace = 0, faith = True):
                     relation1 = grelations, prefix1 = gprefix,
                     instance2 = sinstances, attributes2 = sattributes,
                     relation2 = srelations, prefix2 = sprefix);
+  if print_align:
+    print("Best node mapping alignment:", print_alignment(mapping, ginstances, sinstances))
+  if return_tup:
+    return correct, gold - gn, system - sn, mapping, ginstances, gattributes, grelations, sinstances, sattributes, srelations
   return correct, gold - gn, system - sn, mapping;
 
 def evaluate(golds, systems, format = "json", limit = 20,
